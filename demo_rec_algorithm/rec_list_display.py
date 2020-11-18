@@ -1,5 +1,6 @@
 import pandas as pd
 import math
+import sys
 
 
 def rec_CF(watched_list,n):
@@ -67,5 +68,8 @@ def rec_CF(watched_list,n):
         rec_movies_id.append(k[0])
     return rec_movies_id
 
-watched_list=['849','1587','2851','3703','4581']
-print(rec_CF(watched_list,10))
+if __name__ == "__main__":
+    watched_list_input=sys.argv[0] #watched_list_input 需要用","隔开
+    k=sys.argv[1] #k是topK推荐
+    watched_list=watched_list_input.split(',')
+    print(rec_CF(watched_list,k))
