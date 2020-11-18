@@ -69,7 +69,13 @@ def rec_CF(watched_list,n):
     return rec_movies_id
 
 if __name__ == "__main__":
-    watched_list_input=sys.argv[0] #watched_list_input 需要用","隔开
-    k=sys.argv[1] #k是topK推荐
+    watched_list_input=sys.argv[1] #watched_list_input 需要用","隔开
+    k=sys.argv[2] #k是topK推荐
     watched_list=watched_list_input.split(',')
-    print(rec_CF(watched_list,k))
+    # watched_list=['1','3']
+    # k=10
+    rec_items=rec_CF(watched_list,k)
+    rec_items_str=''
+    for v in rec_items:
+        rec_items_str+=str(v)+','
+    print(rec_items_str)
