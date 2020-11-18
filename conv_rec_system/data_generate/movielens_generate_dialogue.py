@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[7]:
 
 
 import random
@@ -455,25 +455,25 @@ dialogue_pattern = {
 #                 "nl":"$price$",
 #                 },
 #             ],
-    "rating":[
+    "score":[
                 { 
-                "slots":["rating"],
-                "nl":"$rating$",
+                "slots":["score"],
+                "nl":"$score$",
                 },
                 { 
-                "slots":["rating"],
-                "nl":"$rating$ rating",
+                "slots":["score"],
+                "nl":"$score$ score",
                 },
             ]
 }
 
 
 # load json file
-# "movieId": {"genres1": "Imported Food", "genres1": "ON", "year": "Mississauga", "price": "low", "rating": 2.5}
+# "movieId": {"genres1": "Imported Food", "genres1": "ON", "year": "Mississauga", "price": "low", "score": 2.5}
 with open('movies_info_filter.json', 'r') as f:
     movies_info_dict = json.load(f)
     
-# ratings_filter : userId, movieId, rating
+# ratings_filter : userId, movieId, score
 dialogue_list = {}
 dialogue_id = 0
 
@@ -483,22 +483,22 @@ dialogue_id = 0
 with open('./ml-latest-small/ratings.csv') as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
-#     userId,movieId,rating
+#     userId,movieId,score
     for row in f_csv:
 #         print(row)
         userId = row[0]
         movieId = row[1]
-        rating = row[2]
+        score = row[2]
 
         new_dialogue = {}
         new_dialogue["userId"] = userId
         new_dialogue["movieId"] = movieId
-        new_dialogue["rating"] = rating
+        new_dialogue["score"] = score
         new_dialogue["content"] = []
 
-        slot_list = ["genres1","genres2","genres3","year"]
+        slot_list = ["genres1","genres2","genres3","score"]
         random.shuffle(slot_list)
-        slot_list.insert(0, "rating")
+        slot_list.insert(0, "year")
         said_slot = set()
 
         for slot in slot_list:
